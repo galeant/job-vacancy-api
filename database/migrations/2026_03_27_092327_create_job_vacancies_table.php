@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Company;
+use App\Enums\JobVacancyStatus;
 
 return new class extends Migration
 {
@@ -18,7 +20,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('location')->nullable();
             $table->string('salary')->nullable();
-            $table->status('status')->default();
+            $table->unsignedTinyInteger('status')->default(JobVacancyStatus::DRAFT->value);
+            $table->string('deadline');
             $table->timestamps();
         });
     }

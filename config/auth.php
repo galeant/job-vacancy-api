@@ -38,9 +38,23 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'company' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'companies',
+        ],
+
+        'applicant' => [
+            'driver' => 'session',
+            'provider' => 'applicants',
+        ],
+
+        'company-api' => [
+            'driver' => 'sanctum',
+            'provider' => 'companies',
+        ],
+        'applicant-api' => [ // Tambahkan ini
+            'driver' => 'sanctum',
+            'provider' => 'applicants',
         ],
     ],
 
@@ -62,9 +76,13 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'companies' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', User::class),
+            'model' => App\Models\User::class,
+        ],
+        'applicants' => [ // Tambahkan ini
+            'driver' => 'eloquent',
+            'model' => App\Models\Applicant::class,
         ],
 
         // 'users' => [
