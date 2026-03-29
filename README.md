@@ -52,6 +52,27 @@ Below is the documentation of the completed tasks, available commands, routes, a
 | **GET** | `api/vacancies/{vacancy}/applied`       | Yes  | Company   | View the list of applicants for a specific vacancy.       |
 | **GET** | `api/vacancies/job-apply`               | Yes  | Applicant | View the list of jobs the applicant has applied for.      |
 
+## 🚀 Local API Testing
+To test the API locally, follow these steps:
+
+1. **Download & Import**: 
+   Get the [**Job Portal API.postman_collection.json**](https://raw.githubusercontent.com/galeant/job-vacancy-api/refs/heads/main/JobPortalAPI.postman_collection.json?token=GHSAT0AAAAAADVCZIJR3HSU4XKLKBYWAP3W2OIWXLQ) and import it into your Postman Workspace.
+
+2. **Environment Setup**:
+   > [!IMPORTANT]
+   > You **must** configure the Environment Variables for the collection to function correctly.
+
+   Please create a new **Environment** or set **Collection Variables** with the following keys:
+
+   | Variable | Description | Example Value |
+   | :--- | :--- | :--- |
+   | `url` | The base URL of your local server | `http://localhost:8000/api` |
+   | `company_token` | Bearer token for Company authentication | `(auto-set after login)` |
+   | `applicant_token` | Bearer token for Applicant authentication | `(auto-set after login)` |
+
+3. **Authentication**:
+   The collection is pre-configured to automatically update the `token` variables after a successful **Login** request via the *Tests* script.
+
 ## Requirements
 
 Before starting, make sure you have the following installed:
