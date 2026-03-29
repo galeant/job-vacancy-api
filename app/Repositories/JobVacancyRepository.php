@@ -83,4 +83,16 @@ class JobVacancyRepository
         ];
         $applicant->vacancies()->sync($assign);
     }
+
+    public function jobApply(int $applicantId, array $filters = []):Collection|LengthAwarePaginator{
+        $query =  JobVacancy::whereHas('applicants',fn($q) => $q->where('id',$applicantId))
+            ->withExists(['applicants as is_applied' => function($query)use($applicantId) {
+                $query->where('applicant_id', $applicantId);
+            }])
+            ->orderByDesc('id');
+
+        return (isset($filters['per_page']))
+            ? $query->paginate($filters['per_page'])->withQueryString()
+            : $query->get();
+    }
 }

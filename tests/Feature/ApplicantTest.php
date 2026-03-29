@@ -34,7 +34,7 @@ class ApplicantTest extends TestCase
             'data' => [
                 'email' => $this->applicant->email,
                 'name' => $this->applicant->name,
-                'profile_picture' => $this->applicant->profile_picture,
+                'profile_picture' => asset($this->applicant->profile_picture),
                 'phone' => $this->applicant->phone,
                 'resume' => $this->applicant->resume,
                 'cover_letter' => $this->applicant->cover_letter,
@@ -44,7 +44,7 @@ class ApplicantTest extends TestCase
                 'certifications' => $this->applicant->certifications,
                 'projects' => $this->applicant->projects,
                 'languages' => $this->applicant->languages,
-                'cv_file' => $this->applicant->cv_file,
+                'cv_file' => asset($this->applicant->cv_file),
             ],
         ]);
         $response->assertJsonStructure([
@@ -134,7 +134,7 @@ class ApplicantTest extends TestCase
             'data' => [
                 'email' => $payload['email'],
                 'name' => $payload['name'],
-                'profile_picture' => 'storage/profile_pictures/' . time().'_'.$imgName,
+                'profile_picture' => asset('storage/profile_pictures/' . time().'_'.$imgName),
                 'phone' => $payload['phone'],
                 'resume' => $payload['resume'],
                 'cover_letter' => $payload['cover_letter'],
@@ -144,7 +144,7 @@ class ApplicantTest extends TestCase
                 'certifications' => $payload['certifications'],
                 'projects' => $payload['projects'],
                 'languages' => $payload['languages'],
-                'cv_file' => 'storage/cv_files/' . time().'_'.$fileName,
+                'cv_file' => asset('storage/cv_files/' . time().'_'.$fileName),
             ]
         ]);
 

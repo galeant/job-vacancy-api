@@ -106,4 +106,9 @@ class JobVacancyService
         $params['job_vacancy_id'] = $jobVacancy->id;
         return $this->applicantRepository->search(filters:$params);
     }
+
+    public function jobApply(array $params = []){
+        $applicant = Auth::guard('applicant-api')->user();
+        return $this->jobVacancyRepository->jobApply(applicantId: $applicant->id, filters:$params);
+    }
 }

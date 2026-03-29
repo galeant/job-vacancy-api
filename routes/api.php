@@ -38,6 +38,7 @@ Route::group(['prefix' => 'vacancies','as' => 'vacancy.','middleware' => [NullAb
 
     Route::middleware('auth:applicant-api')->group(function () {
         Route::post('/apply', [JobVacancyController::class, 'apply'])->name('apply');
+        Route::get('/job-apply', [JobVacancyController::class, 'jobApply'])->name('job-apply');
     });
 
     Route::middleware('auth:company-api')->group(function () {
@@ -47,7 +48,5 @@ Route::group(['prefix' => 'vacancies','as' => 'vacancy.','middleware' => [NullAb
         Route::post('/{vacancy}/publish', [JobVacancyController::class, 'publish'])->name('publish');
         Route::post('/{vacancy}/inactivate', [JobVacancyController::class, 'inactivate'])->name('inactivate');
     });
-
-
 });
 

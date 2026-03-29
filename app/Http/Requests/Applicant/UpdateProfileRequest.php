@@ -4,6 +4,7 @@ namespace App\Http\Requests\Applicant;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateProfileRequest extends FormRequest
 {
@@ -23,11 +24,11 @@ class UpdateProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:applicants,email'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('applicants','email')->ignore(auth('applicant-api')->user()->id)],
             'profile_picture' => ['nullable', 'file', 'mimes:jpg,jpeg,png'],
 
             'name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:20'],
+            'phone' => ['required', 'string', 'max:20',Rule::unique('applicants','phone')->ignore(auth('applicant-api')->user()->id)],
             'resume' => ['nullable', 'string'],
             'cover_letter' => ['nullable', 'string'],
             'skills' => ['nullable','string'],

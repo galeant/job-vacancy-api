@@ -332,4 +332,34 @@ class JobVacancyTest extends TestCase
         ]));
         $response->assertStatus(401);
     }
+
+    public function test_company_vacancy_job_apply(){
+        $token = $this->user->createToken('test-token')->plainTextToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+        ])->get(route('vacancy.job-apply'));
+
+        $response->assertStatus(401);
+    }
+
+    public function test_applicant_vacancy_job_apply(){
+        $token = $this->applicant->createToken('test-token')->plainTextToken;
+        $this->applicant->vacancies()->sync([
+            $this->publishVacancy[1]->id => [
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        ]);
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+        ])->get(route('vacancy.job-apply'));
+
+        $response->assertStatus(200);
+        $response->assertJsonFragment([
+            'id' => $this->publishVacancy[1]->id,
+            'title' => $this->publishVacancy[1]->title,
+        ]);
+    }
 }

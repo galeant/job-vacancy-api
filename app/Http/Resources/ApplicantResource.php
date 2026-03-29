@@ -17,7 +17,7 @@ class ApplicantResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'profile_picture' => $this->profile_picture,
+            'profile_picture' => asset($this->profile_picture),
             'email' => $this->email,
             'phone' => $this->phone,
             'resume' => $this->resume,
@@ -28,7 +28,7 @@ class ApplicantResource extends JsonResource
             'certifications' => $this->certifications,
             'projects' => $this->projects,
             'languages' => $this->languages,
-            'cv_file' => $this->cv_file,
+            'cv_file' => asset($this->cv_file),
         ];
     }
 }

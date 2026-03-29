@@ -27,8 +27,8 @@ class CompanyRegisterRequest extends FormRequest
             'password' => ['required', 'string'],
 
             'company_name' => ['required', 'string', 'max:255'],
-            'company_email' => ['required', 'string', 'email', 'max:255', 'unique:companies'],
-            'company_phone' => ['required', 'string', 'max:20'],
+            'company_email' => ['required', 'string', 'email', 'max:255', 'unique:companies,email'],
+            'company_phone' => ['required', 'string', 'max:20','unique:companies,phone'],
             'company_description' => ['nullable', 'string'],
             'company_address' => ['nullable', 'string'],
         ];
