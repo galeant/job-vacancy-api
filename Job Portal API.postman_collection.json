@@ -1,0 +1,2331 @@
+{
+  "info": {
+    "_postman_id": "2d9beb6a-6e58-4a5d-857e-e806df413f50",
+    "name": "Job Portal API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "2715999"
+  },
+  "item": [
+    {
+      "name": "Company",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"cm4@gmail.com\",\r\n    \"password\":\"cm4pass\",\r\n    \"company_name\":\"cm4\",\r\n    \"company_email\":\"cm4@mail.com\",\r\n    \"company_phone\":\"1234\",\r\n    \"company_description\":\"cm4desc\",\r\n    \"company_address\":\"cm4address\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/company/register",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "company",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\":\"cm4@gmail.com\",\r\n    \"password\":\"cm4pass\",\r\n    \"company_name\":\"cm4\",\r\n    \"company_email\":\"cm4@mail.com\",\r\n    \"company_phone\":\"1234\",\r\n    \"company_description\":\"cm4desc\",\r\n    \"company_address\":\"cm4address\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/company/register",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "company",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 03:25:53 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Registration success\",\n    \"data\": {\n        \"user\": {\n            \"id\": 3,\n            \"email\": \"cm4@gmail.com\",\n            \"company\": {\n                \"id\": 3,\n                \"name\": \"cm4\",\n                \"email\": \"cm4@mail.com\",\n                \"phone\": \"1234\",\n                \"description\": \"cm4desc\",\n                \"address\": \"cm4address\"\n            }\n        },\n        \"token\": \"5|TzjjA8ufeD3oNpuN3xiEypZHjjuw74TbxB4MjkFv5e8fb0d8\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {\r",
+                  "    \r",
+                  "    // 2. Ambil data JSON dari body response\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    \r",
+                  "    // 3. Ambil token (sesuaikan nama field-nya: 'token' atau 'access_token')\r",
+                  "    const token = jsonData.data.token; \r",
+                  "\r",
+                  "    // 4. Simpan ke Environment Variable dengan nama 'company_token'\r",
+                  "    pm.collectionVariables.set(\"company_token\", token);\r",
+                  "    pm.environment.set(\"company_token\", token);\r",
+                  "    \r",
+                  "    console.log(\"Token berhasil disimpan ke variable: company_token\");\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"cm4@gmail.com\",\r\n    \"password\":\"cm4pass\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/company/login",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "company",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\":\"cm3@gmail.com\",\r\n    \"password\":\"cm1pass\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/company/login",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "company",
+                    "login"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 03:22:38 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Login success\",\n    \"data\": {\n        \"user\": {\n            \"id\": 2,\n            \"email\": \"cm3@gmail.com\"\n        },\n        \"token\": \"3|ih3E3mkbGLdpWznddjGZfkQ4rv09sLj2akJIj8Ree9b3b586\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{company_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/company/logout",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "company",
+                "logout"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/company/logout",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "company",
+                    "logout"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 03:23:25 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Logout success\",\n    \"data\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Profile",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{company_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/company/profile",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "company",
+                "profile"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/company/profile",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "company",
+                    "profile"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 03:24:25 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"id\": 2,\n        \"email\": \"cm3@gmail.com\",\n        \"company\": {\n            \"id\": 2,\n            \"name\": \"cm1\",\n            \"email\": \"cm3@mail.com\",\n            \"phone\": \"123\",\n            \"description\": null,\n            \"address\": null\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{company_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"upm4@mail.com\",\r\n    \"company_name\":\"ucm4\",\r\n    \"company_email\":\"ucm4@mail.com\",\r\n    \"company_phone\":\"4321\",\r\n    \"company_description\":\"ucm4desc\",\r\n    \"company_address\":\"ucm$address\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/company/profile",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "company",
+                "profile"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\":\"upm4@mail.com\",\r\n    \"company_name\":\"ucm4\",\r\n    \"company_email\":\"ucm4@mail.com\",\r\n    \"company_phone\":\"4321\",\r\n    \"company_description\":\"ucm4desc\",\r\n    \"company_address\":\"ucm$address\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/company/profile",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "company",
+                    "profile"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 03:28:43 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"id\": 3,\n        \"email\": \"upm4@mail.com\",\n        \"company\": {\n            \"id\": 3,\n            \"name\": \"ucm4\",\n            \"email\": \"ucm4@mail.com\",\n            \"phone\": \"4321\",\n            \"description\": \"ucm4desc\",\n            \"address\": \"ucm$address\"\n        }\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Applicant",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "ap8@gmail.com",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "ap1pass",
+                  "type": "text"
+                },
+                {
+                  "key": "name",
+                  "value": "ap1",
+                  "type": "text"
+                },
+                {
+                  "key": "phone",
+                  "value": "3218",
+                  "type": "text"
+                },
+                {
+                  "key": "profile_picture",
+                  "type": "file",
+                  "uuid": "bfb88ae6-c194-4e89-949b-4db3aafb573f",
+                  "src": "/C:/Users/Ilham/Downloads/signature_960x640.png"
+                },
+                {
+                  "key": "resume",
+                  "value": "resume",
+                  "type": "text",
+                  "uuid": "c78df6c1-886e-43d2-b69f-9530944c8229"
+                },
+                {
+                  "key": "cover_letter",
+                  "value": "resume",
+                  "type": "text",
+                  "uuid": "b5a49a10-9046-45b2-94e4-fdff02d49e45"
+                },
+                {
+                  "key": "skills",
+                  "value": "skill1",
+                  "type": "text",
+                  "uuid": "0175cf10-4beb-4c84-bea9-615d6860aeba"
+                },
+                {
+                  "key": "experience",
+                  "value": "exp1",
+                  "type": "text",
+                  "uuid": "707754b2-5b69-4ff1-a29e-9e173c1d393f"
+                },
+                {
+                  "key": "education",
+                  "value": "education1",
+                  "type": "text",
+                  "uuid": "d24f73f5-305d-4bb4-a840-e7a0c67ca5ae"
+                },
+                {
+                  "key": "certifications",
+                  "value": "certifications1",
+                  "type": "text",
+                  "uuid": "e9475491-f650-474f-8413-285d943529a3"
+                },
+                {
+                  "key": "projects",
+                  "value": "projects1",
+                  "type": "text",
+                  "uuid": "cb4cdc4f-a86c-4cc8-8d36-357480b8db8b"
+                },
+                {
+                  "key": "languages",
+                  "value": "languages1",
+                  "type": "text",
+                  "uuid": "8c5e6692-05bc-4776-b84a-8a2fb2fecb45"
+                },
+                {
+                  "key": "cv_file",
+                  "type": "file",
+                  "uuid": "d552e0f2-26c4-4fcd-9c95-310ea45234fd",
+                  "src": "/C:/Users/Ilham/Downloads/dummy-pdf_2.pdf"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{url}}/api/applicant/register",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "applicant",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "email",
+                      "value": "ap3@gmail.com",
+                      "type": "text"
+                    },
+                    {
+                      "key": "password",
+                      "value": "ap1pass",
+                      "type": "text"
+                    },
+                    {
+                      "key": "name",
+                      "value": "ap1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "phone",
+                      "value": "321",
+                      "type": "text"
+                    },
+                    {
+                      "key": "profile_picture",
+                      "type": "file",
+                      "uuid": "bfb88ae6-c194-4e89-949b-4db3aafb573f",
+                      "src": "/C:/Users/Ilham/Downloads/signature_960x640.png"
+                    },
+                    {
+                      "key": "resume",
+                      "value": "resume",
+                      "type": "text",
+                      "uuid": "c78df6c1-886e-43d2-b69f-9530944c8229"
+                    },
+                    {
+                      "key": "cover_letter",
+                      "value": "resume",
+                      "type": "text",
+                      "uuid": "b5a49a10-9046-45b2-94e4-fdff02d49e45"
+                    },
+                    {
+                      "key": "skills",
+                      "value": "skill1",
+                      "type": "text",
+                      "uuid": "0175cf10-4beb-4c84-bea9-615d6860aeba"
+                    },
+                    {
+                      "key": "experience",
+                      "value": "exp1",
+                      "type": "text",
+                      "uuid": "707754b2-5b69-4ff1-a29e-9e173c1d393f"
+                    },
+                    {
+                      "key": "education",
+                      "value": "education1",
+                      "type": "text",
+                      "uuid": "d24f73f5-305d-4bb4-a840-e7a0c67ca5ae"
+                    },
+                    {
+                      "key": "certifications",
+                      "value": "certifications1",
+                      "type": "text",
+                      "uuid": "e9475491-f650-474f-8413-285d943529a3"
+                    },
+                    {
+                      "key": "projects",
+                      "value": "projects1",
+                      "type": "text",
+                      "uuid": "cb4cdc4f-a86c-4cc8-8d36-357480b8db8b"
+                    },
+                    {
+                      "key": "languages",
+                      "value": "languages1",
+                      "type": "text",
+                      "uuid": "8c5e6692-05bc-4776-b84a-8a2fb2fecb45"
+                    },
+                    {
+                      "key": "cv_file",
+                      "type": "file",
+                      "uuid": "d552e0f2-26c4-4fcd-9c95-310ea45234fd",
+                      "src": "/C:/Users/Ilham/Downloads/dummy-pdf_2.pdf"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/applicant/register",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "applicant",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 03:36:47 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Registration success\",\n    \"data\": {\n        \"applicant\": {\n            \"id\": 3,\n            \"name\": \"ap1\",\n            \"profile_picture\": \"http://localhost:8000/storage/profile_pictures/1774755406_signature_960x640.png\",\n            \"email\": \"ap3@gmail.com\",\n            \"phone\": \"321\",\n            \"resume\": \"resume\",\n            \"cover_letter\": \"resume\",\n            \"skills\": \"skill1\",\n            \"experience\": \"exp1\",\n            \"education\": \"education1\",\n            \"certifications\": \"certifications1\",\n            \"projects\": \"projects1\",\n            \"languages\": \"languages1\",\n            \"cv_file\": \"http://localhost:8000/storage/cv_files/1774755406_dummy-pdf_2.pdf\"\n        },\n        \"token\": \"9|L2ssJmFngxgV9WTeVjsikvUVo6VX2dAGyJc1bW72069e95ba\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {\r",
+                  "    // 2. Ambil data JSON dari body response\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    \r",
+                  "    // 3. Ambil token (sesuaikan nama field-nya: 'token' atau 'access_token')\r",
+                  "    const token = jsonData.data.token; \r",
+                  "\r",
+                  "    // 4. Simpan ke Environment Variable dengan nama 'company_token'\r",
+                  "    pm.collectionVariables.set(\"applicant_token\", token);\r",
+                  "    pm.environment.set(\"applicant_token\", token);\r",
+                  "    \r",
+                  "    console.log(\"Token berhasil disimpan ke variable: applicant_token\");\r",
+                  "    console.log(pm.collectionVariables.get('applicant_token'))\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"ap8@gmail.com\",\r\n    \"password\":\"ap1pass\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/applicant/login",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "applicant",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\":\"ap3@gmail.com\",\r\n    \"password\":\"ap1pass\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/applicant/login",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "applicant",
+                    "login"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 03:42:52 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Login success\",\n    \"data\": {\n        \"applicant\": {\n            \"id\": 3,\n            \"name\": \"ap1\",\n            \"profile_picture\": \"http://localhost:8000/storage/profile_pictures/1774755406_signature_960x640.png\",\n            \"email\": \"ap3@gmail.com\",\n            \"phone\": \"321\",\n            \"resume\": \"resume\",\n            \"cover_letter\": \"resume\",\n            \"skills\": \"skill1\",\n            \"experience\": \"exp1\",\n            \"education\": \"education1\",\n            \"certifications\": \"certifications1\",\n            \"projects\": \"projects1\",\n            \"languages\": \"languages1\",\n            \"cv_file\": \"http://localhost:8000/storage/cv_files/1774755406_dummy-pdf_2.pdf\"\n        },\n        \"token\": \"10|FvK9nNKJOsxvWefv2L73vcFCkO4hNjWoph6L5OrZ8dc7539c\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{applicant_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/applicant/logout",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "applicant",
+                "logout"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/applicant/logout",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "applicant",
+                    "logout"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 03:43:09 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Logout success\",\n    \"data\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Profile",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{applicant_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/applicant/profile",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "applicant",
+                "profile"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/applicant/profile",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "applicant",
+                    "profile"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 03:43:26 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"id\": 3,\n        \"name\": \"ap1\",\n        \"profile_picture\": \"http://localhost:8000/storage/profile_pictures/1774755406_signature_960x640.png\",\n        \"email\": \"ap3@gmail.com\",\n        \"phone\": \"321\",\n        \"resume\": \"resume\",\n        \"cover_letter\": \"resume\",\n        \"skills\": \"skill1\",\n        \"experience\": \"exp1\",\n        \"education\": \"education1\",\n        \"certifications\": \"certifications1\",\n        \"projects\": \"projects1\",\n        \"languages\": \"languages1\",\n        \"cv_file\": \"http://localhost:8000/storage/cv_files/1774755406_dummy-pdf_2.pdf\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{applicant_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "uap3@gmail.com",
+                  "type": "text"
+                },
+                {
+                  "key": "name",
+                  "value": "uap1",
+                  "type": "text"
+                },
+                {
+                  "key": "phone",
+                  "value": "3214",
+                  "type": "text"
+                },
+                {
+                  "key": "resume",
+                  "value": "uresume",
+                  "type": "text"
+                },
+                {
+                  "key": "cover_letter",
+                  "value": "uresume",
+                  "type": "text"
+                },
+                {
+                  "key": "skills",
+                  "value": "uskill1",
+                  "type": "text"
+                },
+                {
+                  "key": "experience",
+                  "value": "uexp1",
+                  "type": "text"
+                },
+                {
+                  "key": "education",
+                  "value": "ueducation1",
+                  "type": "text"
+                },
+                {
+                  "key": "certifications",
+                  "value": "ucertifications1",
+                  "type": "text"
+                },
+                {
+                  "key": "projects",
+                  "value": "uprojects1",
+                  "type": "text"
+                },
+                {
+                  "key": "languages",
+                  "value": "ulanguages1",
+                  "type": "text"
+                },
+                {
+                  "key": "profile_picture",
+                  "type": "file",
+                  "uuid": "d09d2d16-07d3-4718-ab42-81142e76a9b1",
+                  "src": "/C:/Users/Ilham/Downloads/signature_960x640.png"
+                },
+                {
+                  "key": "cv_file",
+                  "type": "file",
+                  "uuid": "27258910-d0f0-4ab9-af03-ce637a90f0ec",
+                  "src": "/C:/Users/Ilham/Downloads/dummy-pdf_2.pdf"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{url}}/api/applicant/profile",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "applicant",
+                "profile"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "email",
+                      "value": "uap3@gmail.com",
+                      "type": "text"
+                    },
+                    {
+                      "key": "name",
+                      "value": "uap1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "phone",
+                      "value": "3214",
+                      "type": "text"
+                    },
+                    {
+                      "key": "resume",
+                      "value": "uresume",
+                      "type": "text"
+                    },
+                    {
+                      "key": "cover_letter",
+                      "value": "uresume",
+                      "type": "text"
+                    },
+                    {
+                      "key": "skills",
+                      "value": "uskill1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "experience",
+                      "value": "uexp1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "education",
+                      "value": "ueducation1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "certifications",
+                      "value": "ucertifications1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "projects",
+                      "value": "uprojects1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "languages",
+                      "value": "ulanguages1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "profile_picture",
+                      "type": "file",
+                      "uuid": "d09d2d16-07d3-4718-ab42-81142e76a9b1",
+                      "src": "/C:/Users/Ilham/Downloads/signature_960x640.png"
+                    },
+                    {
+                      "key": "cv_file",
+                      "type": "file",
+                      "uuid": "27258910-d0f0-4ab9-af03-ce637a90f0ec",
+                      "src": "/C:/Users/Ilham/Downloads/dummy-pdf_2.pdf"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/applicant/profile",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "applicant",
+                    "profile"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 03:45:49 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"id\": 3,\n        \"name\": \"uap1\",\n        \"profile_picture\": \"http://localhost:8000/storage/profile_pictures/1774755949_signature_960x640.png\",\n        \"email\": \"uap3@gmail.com\",\n        \"phone\": \"3214\",\n        \"resume\": \"uresume\",\n        \"cover_letter\": \"uresume\",\n        \"skills\": \"uskill1\",\n        \"experience\": \"uexp1\",\n        \"education\": \"ueducation1\",\n        \"certifications\": \"ucertifications1\",\n        \"projects\": \"uprojects1\",\n        \"languages\": \"ulanguages1\",\n        \"cv_file\": \"http://localhost:8000/storage/cv_files/1774755949_dummy-pdf_2.pdf\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Vacancy",
+      "item": [
+        {
+          "name": "GetList",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{applicant_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/vacancies?search=",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "vacancies"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "CompanyGetList",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{company_token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/vacancies?search=",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vacancies"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 03:49:50 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"title\": \"va2\",\n            \"description\": \"va2\",\n            \"location\": \"va2\",\n            \"salary\": 200000,\n            \"status\": 2,\n            \"status_text\": \"Published\",\n            \"deadline\": \"2026-12-12T00:00:00.000000Z\",\n            \"is_applied\": false\n        },\n        {\n            \"id\": 3,\n            \"title\": \"va2\",\n            \"description\": \"va2\",\n            \"location\": \"va2\",\n            \"salary\": 200000,\n            \"status\": 1,\n            \"status_text\": \"Draft\",\n            \"deadline\": \"2026-12-12T00:00:00.000000Z\",\n            \"is_applied\": false\n        },\n        {\n            \"id\": 4,\n            \"title\": \"va2\",\n            \"description\": \"va2\",\n            \"location\": \"va2\",\n            \"salary\": 200000,\n            \"status\": 99,\n            \"status_text\": \"Inactive\",\n            \"deadline\": \"2026-12-12T00:00:00.000000Z\",\n            \"is_applied\": false\n        }\n    ]\n}"
+            },
+            {
+              "name": "PublicGetList",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/vacancies?search=",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vacancies"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 04:24:50 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"title\": \"va2\",\n            \"description\": \"va2\",\n            \"location\": \"va2\",\n            \"salary\": 200000,\n            \"status\": 2,\n            \"status_text\": \"Published\",\n            \"deadline\": \"2026-12-12T00:00:00.000000Z\",\n            \"is_applied\": false\n        },\n        {\n            \"id\": 6,\n            \"title\": \"va2\",\n            \"description\": \"va2\",\n            \"location\": \"va2\",\n            \"salary\": 200000,\n            \"status\": 2,\n            \"status_text\": \"Published\",\n            \"deadline\": \"2026-12-12T00:00:00.000000Z\",\n            \"is_applied\": false\n        }\n    ]\n}"
+            },
+            {
+              "name": "ApplicantGetList",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/vacancies?search=",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vacancies"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 04:27:34 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"title\": \"va2\",\n            \"description\": \"va2\",\n            \"location\": \"va2\",\n            \"salary\": 200000,\n            \"status\": 2,\n            \"status_text\": \"Published\",\n            \"deadline\": \"2026-12-12T00:00:00.000000Z\",\n            \"is_applied\": true\n        },\n        {\n            \"id\": 6,\n            \"title\": \"va2\",\n            \"description\": \"va2\",\n            \"location\": \"va2\",\n            \"salary\": 200000,\n            \"status\": 2,\n            \"status_text\": \"Published\",\n            \"deadline\": \"2026-12-12T00:00:00.000000Z\",\n            \"is_applied\": true\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{company_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\":\"va2\",\r\n    \"description\":\"va2\",\r\n    \"location\":\"va2\",\r\n    \"salary\":200000,\r\n    \"deadline\":\"2026-12-12\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/vacancies",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "vacancies"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Succeess",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"title\":\"va2\",\r\n    \"description\":\"va2\",\r\n    \"location\":\"va2\",\r\n    \"salary\":200000,\r\n    \"deadline\":\"2026-12-12\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/vacancies",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vacancies"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 03:46:37 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"va2\",\n        \"description\": \"va2\",\n        \"location\": \"va2\",\n        \"salary\": 200000,\n        \"status\": 1,\n        \"status_text\": \"Draft\",\n        \"deadline\": \"2026-12-12T00:00:00.000000Z\",\n        \"is_applied\": false\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{company_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\":\"va5\",\r\n    \"description\":\"va6\",\r\n    \"location\":\"va6\",\r\n    \"salary\":600000,\r\n    \"deadline\":\"2026-12-25\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/vacancies/4",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "vacancies",
+                "4"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"title\":\"va5\",\r\n    \"description\":\"va6\",\r\n    \"location\":\"va6\",\r\n    \"salary\":600000,\r\n    \"deadline\":\"2026-12-25\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/vacancies/4",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vacancies",
+                    "4"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 03:51:45 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"id\": 4,\n        \"title\": \"va5\",\n        \"description\": \"va6\",\n        \"location\": \"va6\",\n        \"salary\": 600000,\n        \"status\": 1,\n        \"status_text\": \"Draft\",\n        \"deadline\": \"2026-12-25T00:00:00.000000Z\",\n        \"is_applied\": false\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Publish",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{company_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/vacancies/6/publish",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "vacancies",
+                "6",
+                "publish"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/vacancies/6/publish",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vacancies",
+                    "6",
+                    "publish"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 03:52:20 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"id\": 6,\n        \"title\": \"va2\",\n        \"description\": \"va2\",\n        \"location\": \"va2\",\n        \"salary\": 200000,\n        \"status\": 2,\n        \"status_text\": \"Published\",\n        \"deadline\": \"2026-12-12T00:00:00.000000Z\",\n        \"is_applied\": false\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Inactivate",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{company_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/vacancies/5/inactivate",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "vacancies",
+                "5",
+                "inactivate"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/vacancies/5/inactivate",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vacancies",
+                    "5",
+                    "inactivate"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 03:52:35 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"id\": 5,\n        \"title\": \"va2\",\n        \"description\": \"va2\",\n        \"location\": \"va2\",\n        \"salary\": 200000,\n        \"status\": 99,\n        \"status_text\": \"Inactive\",\n        \"deadline\": \"2026-12-12T00:00:00.000000Z\",\n        \"is_applied\": false\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Apply",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{applicant_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"vacancy_id\":2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/vacancies/apply",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "vacancies",
+                "apply"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"vacancy_id\":2\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/vacancies/apply",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vacancies",
+                    "apply"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 03:53:56 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Application submitted successfully\",\n    \"data\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Applied",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{company_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/vacancies/2/applied?search",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "vacancies",
+                "2",
+                "applied"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/vacancies/2/applied?search",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vacancies",
+                    "2",
+                    "applied"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": null
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 03:54:48 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"name\": \"uap1\",\n            \"profile_picture\": \"http://localhost:8000/storage/profile_pictures/1774755949_signature_960x640.png\",\n            \"email\": \"uap3@gmail.com\",\n            \"phone\": \"3214\",\n            \"resume\": \"uresume\",\n            \"cover_letter\": \"uresume\",\n            \"skills\": \"uskill1\",\n            \"experience\": \"uexp1\",\n            \"education\": \"ueducation1\",\n            \"certifications\": \"ucertifications1\",\n            \"projects\": \"uprojects1\",\n            \"languages\": \"ulanguages1\",\n            \"cv_file\": \"http://localhost:8000/storage/cv_files/1774755949_dummy-pdf_2.pdf\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Job Apply",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{applicant_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/vacancies/job-apply",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "vacancies",
+                "job-apply"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/vacancies/job-apply",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vacancies",
+                    "job-apply"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.16"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 04:09:00 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"title\": \"va2\",\n            \"description\": \"va2\",\n            \"location\": \"va2\",\n            \"salary\": 200000,\n            \"status\": 2,\n            \"status_text\": \"Published\",\n            \"deadline\": \"2026-12-12T00:00:00.000000Z\",\n            \"is_applied\": true\n        }\n    ]\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "url",
+      "value": ""
+    },
+    {
+      "key": "company_token",
+      "value": ""
+    },
+    {
+      "key": "applicant_token",
+      "value": ""
+    }
+  ]
+}
