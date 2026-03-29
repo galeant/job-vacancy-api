@@ -56,7 +56,7 @@ Below is the documentation of the completed tasks, available commands, routes, a
 To test the API locally, follow these steps:
 
 1. **Download & Import**: 
-   Get the [**Job Portal API.postman_collection.json**](https://raw.githubusercontent.com/galeant/job-vacancy-api/refs/heads/main/JobPortalAPI.postman_collection.json?token=GHSAT0AAAAAADVCZIJR3HSU4XKLKBYWAP3W2OIWXLQ) and import it into your Postman Workspace.
+   Get the [**Job Portal API.postman_collection.json**](https://raw.githubusercontent.com/galeant/job-vacancy-api/refs/heads/main/JobPortalAPI.postman_collection.json) and import it into your Postman Workspace.
 
 2. **Environment Setup**:
    > [!IMPORTANT]
