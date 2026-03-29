@@ -4,11 +4,11 @@ This project is a simpe job portal api system based on laravel with authenticati
 Below is the documentation of the completed tasks, available commands, routes, and setup instructions.
 
 ## 📑 Table of Contents
-* [Features](#-features-implemented)
-* [Local API Testing](#-local-api-testing)
-* [Requirement](#-requirements)
-* [Installation & Run](#-installation-and-run)
-* [Testing](#-testing)
+* [Features](#features-implemented)
+* [Local API Testing](#local-api-testing)
+* [Requirement](#requirements)
+* [Installation & Run](#installation-and-run)
+* [Testing](#testing)
 
 ## Features Implemented
 
