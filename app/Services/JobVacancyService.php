@@ -2,21 +2,27 @@
 
 namespace App\Services;
 use App\Repositories\JobVacancyRepository;
+use App\Repositories\ApplicantRepository;
 use App\Models\JobVacancy;
 use App\Enums\JobVacancyStatus;
 use Auth;
 use Illuminate\Validation\ValidationException;
 
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 class JobVacancyService
 {
     public $jobVacancyRepository;
+    public $applicantRepository;
 
     public function __construct()
     {
         $this->jobVacancyRepository = new JobVacancyRepository();
+        $this->applicantRepository = new ApplicantRepository();
     }
 
-    public function getList(array $params = []){
+    public function getList(array $params = []):Collection|LengthAwarePaginator{
         if(Auth::guard('company-api')->user()){
             $params['company_id'] = Auth::guard('company-api')->user()->company_id;
         }else{
@@ -94,5 +100,10 @@ class JobVacancyService
         }
 
         $this->jobVacancyRepository->apply($applicant, $payload['vacancy_id']);
+    }
+
+    public function applied(JobVacancy $jobVacancy, array $params = []){
+        $params['job_vacancy_id'] = $jobVacancy->id;
+        return $this->applicantRepository->search(filters:$params);
     }
 }

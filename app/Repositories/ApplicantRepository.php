@@ -8,9 +8,13 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class ApplicantRepository
 {
-    public function search($filters = [], ?int $perPage = null): Collection|LengthAwarePaginato
+    public function search($filters = []): Collection|LengthAwarePaginator
     {
         $query = Applicant::query();
+
+        if(isset($filters['job_vacancy_id'])){
+            $query->whereHas('vacancies',fn($q) => $q->where('id',$filters['job_vacancy_id']));
+        }
 
         if (isset($filters['search'])) {
             $query->where('name', 'like', '%' . $filters['search'] . '%');
@@ -18,8 +22,8 @@ class ApplicantRepository
 
         $query->orderBy($filters['sort_by'] ?? 'id', $filters['sort_order'] ?? 'asc');
 
-        return ($perPage)
-            ? $query->paginate($perPage)->withQueryString()
+        return (isset($filters['per_page']))
+            ? $query->paginate($filters['per_page'])->withQueryString()
             : $query->get();
     }
 

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\JobVacancy\CreateRequest;
 use App\Http\Requests\JobVacancy\UpdateRequest;
 use App\Http\Requests\JobVacancy\ApplyRequest;
+use App\Http\Requests\JobVacancy\AppliedRequest;
 use App\Http\Requests\JobVacancy\GetListRequest;
 use App\Http\Resources\JobVacancyResource;
+use App\Http\Resources\ApplicantResource;
 use App\Services\JobVacancyService;
 use App\Models\JobVacancy;
 
@@ -48,5 +50,10 @@ class JobVacancyController extends Controller
     public function apply(ApplyRequest $request){
         $this->jobVacancyService->apply($request->validated());
         return response()->json(['message' => 'Application submitted successfully','data' => null],200);
+    }
+
+    public function applied(JobVacancy $vacancy,AppliedRequest $request){
+        $applicants = $this->jobVacancyService->applied($vacancy, $request->validated());
+        return ApplicantResource::collection($applicants);
     }
 }

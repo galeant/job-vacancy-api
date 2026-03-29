@@ -43,6 +43,7 @@ Route::group(['prefix' => 'vacancies','as' => 'vacancy.','middleware' => [NullAb
     Route::middleware('auth:company-api')->group(function () {
         Route::post('/', [JobVacancyController::class, 'create'])->name('create');
         Route::post('/{vacancy}', [JobVacancyController::class, 'update'])->name('update');
+        Route::get('/{vacancy}/applied', [JobVacancyController::class, 'applied'])->name('applied');
         Route::post('/{vacancy}/publish', [JobVacancyController::class, 'publish'])->name('publish');
         Route::post('/{vacancy}/inactivate', [JobVacancyController::class, 'inactivate'])->name('inactivate');
     });

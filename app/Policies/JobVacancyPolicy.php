@@ -21,7 +21,7 @@ class JobVacancyPolicy
      */
     public function view(User $user, JobVacancy $jobVacancy): bool
     {
-        return false;
+        return $user->company_id === $jobVacancy->company_id;
     }
 
     /**

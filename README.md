@@ -47,6 +47,7 @@ Below is the documentation of the completed tasks, available commands, routes, a
 | **POST** | `api/vacancies/{vacancy}`              |  Yes | Company   |
 | **POST** | `api/vacancies/{vacancy}/inactivate`   |  Yes | Company   |
 | **POST** | `api/vacancies/{vacancy}/publish`      |  Yes | Company   |
+| **GET**  | `api/vacancies/{vacancy}/applied`      |  Yes | Company   |
 
 
 ## Requirements

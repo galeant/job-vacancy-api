@@ -298,6 +298,38 @@ class JobVacancyTest extends TestCase
         $list->assertJsonFragment([
             'is_applied' => true,
         ]);
+    }
 
+    public function test_company_vacancy_applied(){
+        $token = $this->user->createToken('test-token')->plainTextToken;
+        $this->publishVacancy[0]->applicants()->sync([
+            $this->applicant->id => [
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        ]);
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+        ])->get(route('vacancy.applied',[
+            'vacancy' => $this->publishVacancy[0],
+        ]));
+
+        $response->assertStatus(200);
+        $response->assertJsonFragment([
+            'id' => $this->applicant->id,
+            'name' => $this->applicant->name,
+            'email' => $this->applicant->email,
+        ]);
+    }
+
+    public function test_applicant_vacancy_applied(){
+        $token = $this->applicant->createToken('test-token')->plainTextToken;
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+        ])->get(route('vacancy.applied',[
+            'vacancy' => $this->publishVacancy[0]
+        ]));
+        $response->assertStatus(401);
     }
 }
