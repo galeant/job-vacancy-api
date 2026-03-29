@@ -43,9 +43,11 @@ class JobVacancyRepository
             : $query->get();
     }
 
-    public function findById(int $id): ?JobVacancy
+    public function findById(int $id, int $applicantId = null): ?JobVacancy
     {
-        return JobVacancy::find($id);
+        return JobVacancy::where('id',$id)
+            ->when($applicantId, fn($q) => $q->with(['applicants' => fn($q1) =>  $q1->where('applicant_id',$applicantId)]))
+            ->first();
     }
 
     public function create(array $data): JobVacancy

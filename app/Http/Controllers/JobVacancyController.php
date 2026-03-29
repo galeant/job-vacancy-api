@@ -32,16 +32,16 @@ class JobVacancyController extends Controller
     }
 
     public function publish(JobVacancy $vacancy){
-        auth()->user()->can('update', $vacancy->id);
+        auth('company-api')->user()->can('update', $vacancy->id);
 
-        $jobVacancy = $this->jobVacancyService->publish($vacancy->id);
+        $jobVacancy = $this->jobVacancyService->publish($vacancy);
         return new JobVacancyResource($jobVacancy);
     }
 
     public function inactivate(JobVacancy $vacancy){
-        auth()->user()->can('update', $vacancy->id);
+        auth('company-api')->user()->can('update', $vacancy->id);
 
-        $jobVacancy = $this->jobVacancyService->inactivate($vacancy->id);
+        $jobVacancy = $this->jobVacancyService->inactivate($vacancy);
         return new JobVacancyResource($jobVacancy);
     }
 

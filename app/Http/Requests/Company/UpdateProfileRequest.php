@@ -24,11 +24,13 @@ class UpdateProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('companies')->ignore(auth()->user()->company_id),],
-            'phone' => ['required', 'string', 'max:20'],
-            'description' => ['nullable', 'string'],
-            'address' => ['nullable', 'string'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(auth()->user()->id),],
+
+            'company_name' => ['required', 'string', 'max:255'],
+            'company_email' => ['required', 'string', 'email', 'max:255', Rule::unique('companies')->ignore(auth()->user()->company_id),],
+            'company_phone' => ['required', 'string', 'max:20'],
+            'company_description' => ['nullable', 'string'],
+            'company_address' => ['nullable', 'string'],
         ];
     }
 }

@@ -16,4 +16,13 @@ enum JobVacancyStatus: int
             self::INACTIVE => 'Inactive',
         };
     }
+
+    public static function getRandom(): self
+    {
+        return match(rand(1, 3)) {
+            1 => self::DRAFT,
+            2 => self::PUBLISHED,
+            3 => self::INACTIVE,
+        };
+    }
 }

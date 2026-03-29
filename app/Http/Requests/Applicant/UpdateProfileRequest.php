@@ -28,14 +28,14 @@ class UpdateProfileRequest extends FormRequest
 
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:20'],
-            'resume' => ['nullable', 'file', 'mimes:pdf,doc,docx'],
-            'cover_letter' => ['nullable', 'file', 'mimes:pdf,doc,docx'],
-            'skills' => ['nullable', 'json'],
-            'experience' => ['nullable', 'json'],
-            'education' => ['nullable', 'json'],
-            'certifications' => ['nullable', 'json'],
-            'projects' => ['nullable', 'json'],
-            'languages' => ['nullable', 'json'],
+            'resume' => ['nullable', 'string'],
+            'cover_letter' => ['nullable', 'string'],
+            'skills' => ['nullable','string'],
+            'experience' => ['nullable', 'string'],
+            'education' => ['nullable', 'string'],
+            'certifications' => ['nullable', 'string'],
+            'projects' => ['nullable', 'string'],
+            'languages' => ['nullable', 'string'],
             'cv_file' => ['nullable', 'file', 'mimes:pdf,doc,docx'],
         ];
     }

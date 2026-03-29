@@ -36,13 +36,20 @@ class CompanyService
         return $user->load('company');
     }
 
-    public function updateProfile(Company $company, array $payload){
-        return $this->companyRepository->update($company->id, [
-            'name' => $payload['name'],
+    public function updateProfile(User $user, Company $company, array $payload):User{
+
+        $user = $this->userRepository->update($user->id,[
             'email' => $payload['email'],
-            'phone' => $payload['phone'],
-            'description' => $payload['description'],
-            'address' => $payload['address'],
+            'company_id' => $company->id,
         ]);
+        $company =  $this->companyRepository->update($company->id, [
+            'name' => $payload['company_name'],
+            'email' => $payload['company_email'],
+            'phone' => $payload['company_phone'],
+            'description' => $payload['company_description'],
+            'address' => $payload['company_address'],
+        ]);
+
+        return $user->load('company')->refresh();
     }
 }

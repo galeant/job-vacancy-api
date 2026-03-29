@@ -18,6 +18,8 @@ class JobVacancy extends Model
     {
         return [
            'status' => \App\Enums\JobVacancyStatus::class,
+           'deadline' => 'date:y-m-d',
+           'salary' => 'int',
         ];
     }
 

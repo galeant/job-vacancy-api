@@ -5,6 +5,7 @@ use App\Repositories\JobVacancyRepository;
 use App\Models\JobVacancy;
 use App\Enums\JobVacancyStatus;
 use Auth;
+use Illuminate\Validation\ValidationException;
 
 class JobVacancyService
 {
@@ -52,24 +53,46 @@ class JobVacancyService
             'location' => $payload['location'],
             'salary' => $payload['salary'],
             'deadline' => $payload['deadline'],
+
             'status' => JobVacancyStatus::DRAFT->value,
         ]);
     }
 
-    public function publish($id):JobVacancy{
-        return $this->jobVacancyRepository->update($id, [
+    public function publish(JobVacancy $jobVacancy):JobVacancy{
+        if($jobVacancy->status != JobVacancyStatus::DRAFT){
+            throw new \Exception('Data not in draft state');
+        }
+
+        return $this->jobVacancyRepository->update($jobVacancy->id, [
             'status' => JobVacancyStatus::PUBLISHED->value,
         ]);
     }
 
-    public function inactivate($id):JobVacancy{
-        return $this->jobVacancyRepository->update($id, [
+    public function inactivate(JobVacancy $jobVacancy):JobVacancy{
+        if($jobVacancy->status == JobVacancyStatus::INACTIVE){
+            throw new \Exception('Data is already inactive');
+        }
+        return $this->jobVacancyRepository->update($jobVacancy->id, [
             'status' => JobVacancyStatus::INACTIVE->value,
         ]);
     }
 
     public function apply(array $payload):void{
         $applicant = Auth::guard('applicant-api')->user();
+        $vacancy = $this->jobVacancyRepository->findById($payload['vacancy_id'],$applicant->id);
+
+        if(!$vacancy || $vacancy->status != JobVacancyStatus::PUBLISHED){
+            throw ValidationException::withMessages([
+                'vacancy_id' => ['job vacancy not eligible'],
+            ]);
+        }
+
+        if($vacancy->applicants->count() > 0){
+            throw ValidationException::withMessages([
+                'vacancy_id' => ['already applied'],
+            ]);
+        }
+
         $this->jobVacancyRepository->apply($applicant, $payload['vacancy_id']);
     }
 }

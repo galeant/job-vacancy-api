@@ -3,6 +3,7 @@
 namespace App\Services;
 use App\Repositories\ApplicantRepository;
 use App\Models\Applicant;
+use App\Utils\ImageUpload;
 
 class ApplicantService
 {
@@ -18,12 +19,12 @@ class ApplicantService
     {
         $profilePicturePath = null;
         if (isset($payload['profile_picture'])) {
-            $profilePicturePath = $payload['profile_picture']->store('profile_pictures', 'public');
+            $profilePicturePath = ImageUpload::upload($payload['profile_picture'], 'profile_pictures');
         }
 
         $cvFilePath = null;
         if (isset($payload['cv_file'])) {
-            $cvFilePath = $payload['cv_file']->store('cv_files', 'public');
+            $cvFilePath = ImageUpload::upload($payload['cv_file'], 'cv_files');
         }
 
         $applicant = $this->applicantRepository->create([
@@ -49,13 +50,14 @@ class ApplicantService
     public function updateProfile(Applicant $applicant, array $payload){
         $profilePicturePath = null;
         if (isset($payload['profile_picture'])) {
-            $profilePicturePath = $payload['profile_picture']->store('profile_pictures', 'public');
+            $profilePicturePath = ImageUpload::upload($payload['profile_picture'], 'profile_pictures');
         }
 
         $cvFilePath = null;
         if (isset($payload['cv_file'])) {
-            $cvFilePath = $payload['cv_file']->store('cv_files', 'public');
+            $cvFilePath = ImageUpload::upload($payload['cv_file'], 'cv_files');
         }
+
         return $this->applicantRepository->update($applicant->id, [
             'name' => $payload['name'],
             'profile_picture' => $profilePicturePath,
