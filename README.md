@@ -3,6 +3,13 @@
 This project is a simpe job portal api system based on laravel with authentication, API endpoints
 Below is the documentation of the completed tasks, available commands, routes, and setup instructions.
 
+## 📑 Table of Contents
+* [Features](#-features-implemented)
+* [Local API Testing](#-local-api-testing)
+* [Requirement](#-requirements)
+* [Installation & Run](#-installation-and-run)
+* [Testing](#-testing)
+
 ## Features Implemented
 
 ### Core Functionalities
@@ -14,45 +21,8 @@ Below is the documentation of the completed tasks, available commands, routes, a
 -   View list applicant on specified job vacancy company
 -   View list job vacancy has already applied applicant
 
-### Dummy Account
-```bash
-- company
-    email: cp1@mail.com
-    password: password
-- applicant
-    email: ap1@mail.com
-    password: password
-```
 
-> ⚠️ **Important:**  
-> You **must** run `php artisan migrate --seed` before using the system.  
-> This command creates the required tables and inserts the dummy data.
-
-
-### Route List API
-
-| Method   | URI                                     | Auth | Auth Type | Description                                               |
-| :------- | :-------------------------------------- | :--- | :-------- | :-------------------------------------------------------- |
-| **POST** | `api/applicant/login`                   | No   |           | Applicant login to obtain an access token.                |
-| **POST** | `api/applicant/logout`                  | Yes  | Applicant | Revoke access token and end the applicant session.         |
-| **GET** | `api/applicant/profile`                 | Yes  | Applicant | Retrieve detailed profile data of the active applicant.    |
-| **POST** | `api/applicant/profile`                 | Yes  | Applicant | Update profile information (including CV/Photo upload).    |
-| **POST** | `api/applicant/register`                | No   |           | Register a new account for a job applicant.               |
-| **POST** | `api/company/login`                     | No   |           | Company login to obtain an access token.                  |
-| **POST** | `api/company/logout`                    | Yes  | Company   | Revoke access token and end the company session.           |
-| **GET** | `api/company/profile`                   | Yes  | Company   | Retrieve information of the currently active company.      |
-| **POST** | `api/company/profile`                   | Yes  | Company   | Update company profile details.  |
-| **POST** | `api/company/register`                  | No   |           | Register a new account for a company entity.              |
-| **GET** | `api/vacancies`                         | All  | All       | View all job vacancies (publicly accessible).             |
-| **POST** | `api/vacancies`                         | Yes  | Company   | Create a draft or post a new job vacancy.                 |
-| **POST** | `api/vacancies/apply`                   | Yes  | Applicant | Submit a job application for a specific vacancy.           |
-| **POST** | `api/vacancies/{vacancy}`               | Yes  | Company   | Update data or content of an existing job vacancy.        |
-| **POST** | `api/vacancies/{vacancy}/inactivate`    | Yes  | Company   | Set vacancy status to inactive (close the job post).       |
-| **POST** | `api/vacancies/{vacancy}/publish`       | Yes  | Company   | Set vacancy status to publish (make it visible to public). |
-| **GET** | `api/vacancies/{vacancy}/applied`       | Yes  | Company   | View the list of applicants for a specific vacancy.       |
-| **GET** | `api/vacancies/job-apply`               | Yes  | Applicant | View the list of jobs the applicant has applied for.      |
-
-## 🚀 Local API Testing
+##  Local API Testing
 Follow these steps to set up and test the API in your local environment:
 
 ### 1. Download & Import
@@ -77,6 +47,43 @@ You don't need to copy-paste tokens manually. The collection includes a **Tests*
 * After a successful **Company Login**, `company_token` is updated.
 * After a successful **Applicant Login**, `applicant_token` is updated.
 
+### Route List API
+
+| Method   | URI                                     | Auth | Auth Type | Description                                               |
+| :------- | :-------------------------------------- | :--- | :-------- | :-------------------------------------------------------- |
+| **POST** | `api/applicant/login`                   | No   |           | Applicant login to obtain an access token.                |
+| **POST** | `api/applicant/logout`                  | Yes  | Applicant | Revoke access token and end the applicant session.         |
+| **GET** | `api/applicant/profile`                 | Yes  | Applicant | Retrieve detailed profile data of the active applicant.    |
+| **POST** | `api/applicant/profile`                 | Yes  | Applicant | Update profile information (including CV/Photo upload).    |
+| **POST** | `api/applicant/register`                | No   |           | Register a new account for a job applicant.               |
+| **POST** | `api/company/login`                     | No   |           | Company login to obtain an access token.                  |
+| **POST** | `api/company/logout`                    | Yes  | Company   | Revoke access token and end the company session.           |
+| **GET** | `api/company/profile`                   | Yes  | Company   | Retrieve information of the currently active company.      |
+| **POST** | `api/company/profile`                   | Yes  | Company   | Update company profile details.  |
+| **POST** | `api/company/register`                  | No   |           | Register a new account for a company entity.              |
+| **GET** | `api/vacancies`                         | All  | All       | View all job vacancies (publicly accessible).             |
+| **POST** | `api/vacancies`                         | Yes  | Company   | Create a draft or post a new job vacancy.                 |
+| **POST** | `api/vacancies/apply`                   | Yes  | Applicant | Submit a job application for a specific vacancy.           |
+| **POST** | `api/vacancies/{vacancy}`               | Yes  | Company   | Update data or content of an existing job vacancy.        |
+| **POST** | `api/vacancies/{vacancy}/inactivate`    | Yes  | Company   | Set vacancy status to inactive (close the job post).       |
+| **POST** | `api/vacancies/{vacancy}/publish`       | Yes  | Company   | Set vacancy status to publish (make it visible to public). |
+| **GET** | `api/vacancies/{vacancy}/applied`       | Yes  | Company   | View the list of applicants for a specific vacancy.       |
+| **GET** | `api/vacancies/job-apply`               | Yes  | Applicant | View the list of jobs the applicant has applied for.      |
+
+### Dummy Account
+```bash
+- company
+    email: cp1@mail.com
+    password: password
+- applicant
+    email: ap1@mail.com
+    password: password
+```
+
+> ⚠️ **Important:**  
+> You **must** run `php artisan migrate --seed` before using the system.  
+> This command creates the required tables and inserts the dummy data.
+
 ## Requirements
 
 Before starting, make sure you have the following installed:
@@ -89,6 +96,7 @@ Before starting, make sure you have the following installed:
 > ⚠️ **Important:**  
 > You **must** already installed all requirement for this project to run
 
+## Installation And Run
 ## 1. Clone the Repository
 
 ```bash
@@ -149,8 +157,7 @@ php artisan serve
 
 Access it at: http://localhost:8000
 
-## 7. Run Tests
-
+## Testing
 ```bash
 php artisan test
 ```
