@@ -53,25 +53,29 @@ Below is the documentation of the completed tasks, available commands, routes, a
 | **GET** | `api/vacancies/job-apply`               | Yes  | Applicant | View the list of jobs the applicant has applied for.      |
 
 ## 🚀 Local API Testing
-To test the API locally, follow these steps:
+Follow these steps to set up and test the API in your local environment:
 
-1. **Download & Import**: 
-   Get the [**Job Portal API.postman_collection.json**](https://raw.githubusercontent.com/galeant/job-vacancy-api/refs/heads/main/JobPortalAPI.postman_collection.json) and import it into your Postman Workspace.
+### 1. Download & Import
+* **Step 1**: Download the [**Job Portal API Collection**](https://raw.githubusercontent.com/galeant/job-vacancy-api/refs/heads/main/JobPortalAPI.postman_collection.json).
+* **Step 2**: Import the `.json` file into your Postman Workspace.
+* **Online Documentation**: For a detailed endpoint reference, visit our [Postman Documenter](https://documenter.getpostman.com/view/2715999/2sBXinFpeK).
 
-2. **Environment Setup**:
-   > [!IMPORTANT]
-   > You **must** configure the Environment Variables for the collection to function correctly.
+### 2. Environment Setup
+> [!IMPORTANT]
+> You **must** configure Environment Variables for the collection to function correctly. Without these, the requests will fail.
 
-   Please create a new **Environment** or set **Collection Variables** with the following keys:
+Please create a new **Environment** in Postman and define the following variables:
 
-   | Variable | Description | Example Value |
-   | :--- | :--- | :--- |
-   | `url` | The base URL of your local server | `http://localhost:8000/api` |
-   | `company_token` | Bearer token for Company authentication | `(auto-set after login)` |
-   | `applicant_token` | Bearer token for Applicant authentication | `(auto-set after login)` |
+| Variable | Description | Example Value |
+| :--- | :--- | :--- |
+| `url` | The base URL of your local API server | `http://localhost:8000/api` |
+| `company_token` | Bearer token for Company auth | *(Auto-updated after login)* |
+| `applicant_token` | Bearer token for Applicant auth | *(Auto-updated after login)* |
 
-3. **Authentication**:
-   The collection is pre-configured to automatically update the `token` variables after a successful **Login** request via the *Tests* script.
+### 3. Automated Authentication
+You don't need to copy-paste tokens manually. The collection includes a **Tests** script that automatically captures the Bearer Token upon a successful login:
+* After a successful **Company Login**, `company_token` is updated.
+* After a successful **Applicant Login**, `applicant_token` is updated.
 
 ## Requirements
 
