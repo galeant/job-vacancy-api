@@ -81,7 +81,7 @@ class JobVacancyRepository
                 'updated_at' => now(),
             ],
         ];
-        $applicant->vacancies()->sync($assign);
+        $applicant->vacancies()->attach($assign);
     }
 
     public function jobApply(int $applicantId, array $filters = []):Collection|LengthAwarePaginator{
